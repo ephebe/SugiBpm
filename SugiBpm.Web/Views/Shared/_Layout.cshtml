@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugilite Business Process Management</title>
+    
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Sugilite Business Process Management</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/User">Users</a>
+                    </li>
+                    <li>
+                        <a href="/Developer">Developers</a>
+                    </li>
+                    <li>
+                        <a href="/Admin">Administrators</a>
+                    </li>
+                    <li>
+                        <a href="/Info">Info</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("datetimePickJs", required: false)
+</body>
+</html>

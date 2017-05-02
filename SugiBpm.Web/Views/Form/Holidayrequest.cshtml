@@ -1,0 +1,82 @@
+﻿
+@using SugiBpm.Execution.Application.ViewModel
+@model ActivityFormView
+@section datetimePickJs
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form_datetime').datetimepicker();
+        })
+    </script>    
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Holiday</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/Form/SubmitForm" method="post" role="form">
+            <input type="hidden" name="Model.ProcessDefinitionId" value="@Model.ProcessDefinitionId" />
+            <input type="hidden" name="Model.FlowId" value="@Model.FlowId" />
+
+            @if (Model.FlowId == null)
+            {
+                <div class="form-group">
+                    <label for="hidStartDate" class="control-label">Start Date</label>
+                    <div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH p" data-link-field="hidStartDate" minView="1">
+                        <input class="form-control" size="16" type="text" value="" readonly="">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" id="hidStartDate" name="Model.Parameters[start date]"><br>
+                </div>
+                <div class="form-group">
+                    <label for="hidEndDate" class="control-label">End Date</label>
+                    <div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH p" data-link-field="hidEndDate" minView="1">
+                        <input class="form-control" size="16" type="text" value="" readonly="">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" id ="hidEndDate" name="Model.Parameters[end date]"><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <input id="comment" name="Model.Parameters[comment]" type="text" class="form-control"/>
+                </div>
+                <button type="submit" class="btn btn-success">Start</button>
+            }
+            else
+            {
+                if (Model.AttributeValues.Count > 0)
+                {
+                    <div class="form-group">
+                        <label for="request" class="control-label">Requester</label>
+                        <input name="request" class="form-control" type="text" value=@Model.AttributeValues["requester"] readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate" class="control-label">Start Date</label>
+                        <input name="startDate" class="form-control" type="text" value="@(((DateTime)Model.AttributeValues["start date"]).ToString("yyyy/MM/dd - HH"))" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate" class="control-label">End Date</label>
+                        <input name="endDate" class="form-control" type="text" value="@(((DateTime)Model.AttributeValues["end date"]).ToString("yyyy/MM/dd - HH"))" readonly="">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">evaluation result</label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="Model.Parameters[evaluation result]" value="approve" checked> approve
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="Model.Parameters[evaluation result]" value="disapprove"> disapprove
+                        </label>
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-success">Process Activity</button>
+            }
+
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+
+<process-definition>
+
+  <name>Hello world 0</name>
+  <description>This is the simplest process.</description>
+
+  <start-state name="start">
+    <transition to="end" />
+  </start-state>
+
+  <end-state name="end" />
+
+</process-definition>

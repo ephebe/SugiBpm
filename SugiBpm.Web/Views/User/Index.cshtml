@@ -1,0 +1,102 @@
+﻿@using SugiBpm.Web.Models
+@model UserViewModel
+
+<form action="/User" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Personal Tasklist
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Process name</td>
+                        <td>Activity name</td>
+                        <td>Perform activity</td>
+                        <td>Preview</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in Model.TaskList)
+                    {
+                        <tr>
+                            <td>@task.ProcessDefinitionName</td>
+                            <td>@task.NodeName</td>
+                            <td>
+                                <a class="btn btn-default" href="/Form/ActivityForm?flowId=@task.Id">Perform Activity</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" data-toggle="modal" href="#previewDefinition">Preview</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Start A Process
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Process name</td>
+                        <td>Start a process</td>
+                        <td>Preview</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var definition in Model.ProcessDefinitions)
+                    {
+                        <tr>
+                            <td>@definition.Name</td>
+                            <td>
+                                <a class="btn btn-default" href="/Form/StartForm?processDefinitionId=@definition.Id">Start</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" data-toggle="modal" href="#previewDefinition">Preview</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="previewDefinition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Preview</h4>
+                </div>
+                <div class="modal-body">Demo</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Group Tasklist
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Group name</td>
+                        <td>Process name</td>
+                        <td>Activity name</td>
+                        <td>Task</td>
+                        <td>Preview</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</form>

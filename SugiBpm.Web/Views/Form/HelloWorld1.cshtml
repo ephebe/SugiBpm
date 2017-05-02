@@ -1,0 +1,37 @@
+﻿@using SugiBpm.Execution.Application.ViewModel
+@model ActivityFormView
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">HelloWorld1</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/Form/SubmitForm" method="post">
+            <input type="hidden" name="processDefinitionId" value="@Model.ProcessDefinitionId" />
+            <input type="hidden" name="flowId" value="@Model.FlowId" />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td nowrap class="tableHeaderCell">Field</td>
+                        <td nowrap class="tableHeaderCell">Input</td>
+                        <td nowrap class="tableHeaderCell">Required</td>
+                        <td nowrap class="tableHeaderCell">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            @if (Model.FlowId == null)
+            {
+                <button type="submit" class="btn btn-success">Start</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success">Process Activity</button>
+            }
+            
+        </form>
+    </div>
+</div>
+
+

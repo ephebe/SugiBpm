@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+
+<process-definition>
+
+  <name>Hello world 2</name>
+  <description>This is the simples process.</description>
+
+  <start-state name="start">
+    <transition to="first activity state" />
+  </start-state>
+
+  <end-state name="end" />
+
+  <attribute name="the text attrib" type="text" initial-value=":-)" />
+
+  <activity-state name="first activity state">
+    <description>this is the first state</description>
+    <assignment handler="ActorAssignment">
+      <parameter name="expression">processInitiator</parameter>
+    </assignment>
+    <transition to="end">
+      <action event="transition" handler="HelloWorldAction" />
+    </transition>
+  </activity-state>
+
+</process-definition>

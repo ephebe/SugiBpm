@@ -1,0 +1,31 @@
+﻿@using SugiBpm.Execution.Application.ViewModel
+@model ActivityFormView
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">HelloWorld2</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/Form/SubmitForm" method="post" role="form">
+            <input type="hidden" name="Model.ProcessDefinitionId" value="@Model.ProcessDefinitionId" />
+            <input type="hidden" name="Model.FlowId" value="@Model.FlowId" />
+
+            @if (Model.FlowId == null)
+            {
+                <button type="submit" class="btn btn-success">Start</button>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label for="name">the text attrib</label>
+                    <input type="text" class="form-control" name="Model.AttributeValues[the text attrib]" value=@Model.AttributeValues["the text attrib"] />
+                </div>
+                <button type="submit" class="btn btn-success">Process Activity</button>
+            }
+
+        </form>
+    </div>
+</div>
+
+
+
